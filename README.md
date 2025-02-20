@@ -87,7 +87,8 @@ DIP는 SOLID 원칙 중 하나로, "고수준 모듈은 저수준 모듈에 의�
 추상화: 고수준 모듈과 저수준 모듈이 인터페이스나 추상 클래스를 통해 연결되어야 합니다. 즉, PaymentProcessor와 같은 인터페이스를 정의하여 두 모듈이 서로 의존하지 않도록 합니다.
 
 🚀 DIP 적용 전: 고수준 모듈이 저수준 모듈에 의존하는 경우
-``` package com.example.dip
+```
+package com.example.dip
 
 import org.springframework.stereotype.Service
 
@@ -110,14 +111,15 @@ class CreditCardPaymentProcessor {
 }
 ```
 ❌ 문제점:
-PaymentService는 **직접 CreditCardPaymentProcessor**에 의존하고 있습니다.
-PaymentService가 저수준 모듈에 직접 의존하고 있기 때문에, CreditCardPaymentProcessor를 변경하거나 다른 결제 방식을 추가할 때 PaymentService도 수정해야 합니다.
-DIP 위반! 고수준 모듈이 저수준 모듈에 의존하고 있기 때문에, 시스템의 확장성과 유연성이 떨어집니다.
-
+PaymentService는 **직접 CreditCardPaymentProcessor**에 의존하고 있습니다.  
+PaymentService가 저수준 모듈에 직접 의존하고 있기 때문에, CreditCardPaymentProcessor를 변경하거나 다른 결제 방식을 추가할 때 PaymentService도 수정해야 합니다.  
+DIP 위반! 고수준 모듈이 저수준 모듈에 의존하고 있기 때문에, 시스템의 확장성과 유연성이 떨어집니다.  
+  
 ✅ DIP 적용 후: 추상화(인터페이스) 도입
 DIP를 적용하면, PaymentService가 PaymentProcessor와 같은 추상화된 인터페이스에 의존하게 됩니다. 이제 PaymentService는 구체적인 구현체(CreditCardPaymentProcessor)에 의존하지 않게 됩니다.
-
+  
 📌 1. PaymentProcessor 인터페이스 정의
+```
 package com.example.dip
 
 interface PaymentProcessor {
@@ -137,8 +139,9 @@ class PayPalPaymentProcessor : PaymentProcessor {
         println("💰 Processing PayPal payment of $$amount")
     }
 }
-
+```  
 📌 3. PaymentService (DIP 준수: PaymentProcessor 인터페이스에 의존)
+```
 package com.example.dip
 
 import org.springframework.stereotype.Service
@@ -150,10 +153,10 @@ class PaymentService(private val paymentProcessor: PaymentProcessor) {
         paymentProcessor.process(amount)
     }
 }
-
-PaymentService는 이제 구체적인 PaymentProcessor 구현체에 의존하지 않고, PaymentProcessor 인터페이스에 의존하게 됩니다.
-PaymentService는 인터페이스만 알고 있고, 실제 결제 처리 방식은 다양한 PaymentProcessor 구현체에 의해 처리됩니다.
-
+```
+PaymentService는 이제 구체적인 PaymentProcessor 구현체에 의존하지 않고, PaymentProcessor 인터페이스에 의존하게 됩니다.  
+PaymentService는 인터페이스만 알고 있고, 실제 결제 처리 방식은 다양한 PaymentProcessor 구현체에 의해 처리됩니다.  
+```
 📌 4. PaymentController (컨트롤러에서 DI를 통해 결제 방식 선택)
 package com.example.dip
 
@@ -175,14 +178,14 @@ class PaymentController(private val paymentService: PaymentService) {
         }
     }
 }
-
-✅ DIP 적용 후 장점:
-고수준 모듈(PaymentService)이 저수준 모듈(CreditCardPaymentProcessor)에 의존하지 않고, 추상화된 PaymentProcessor 인터페이스에 의존하게 되어, 구현체가 변경되거나 확장되어도 PaymentService는 수정할 필요가 없음.
-새로운 결제 방식(PayPalPaymentProcessor 등)을 추가할 때 PaymentService를 변경하지 않아도 되므로 유지보수와 확장성이 쉬워짐.
-테스트 용이성: PaymentProcessor를 Mocking하여 PaymentService를 테스트할 수 있습니다.
-
-🎯 DIP 원칙의 핵심 요약
-고수준 모듈은 저수준 모듈에 의존해서는 안 됩니다.
-두 모듈은 추상화된 인터페이스에 의존해야 합니다.
-DIP를 준수하면 확장성이 높고, 변경에 유연하며, 테스트가 용이한 시스템을 만들 수 있습니다.
+```  
+✅ DIP 적용 후 장점:  
+고수준 모듈(PaymentService)이 저수준 모듈(CreditCardPaymentProcessor)에 의존하지 않고, 추상화된 PaymentProcessor 인터페이스에 의존하게 되어, 구현체가 변경되거나 확장되어도 PaymentService는 수정할 필요가 없음.  
+새로운 결제 방식(PayPalPaymentProcessor 등)을 추가할 때 PaymentService를 변경하지 않아도 되므로 유지보수와 확장성이 쉬워짐.  
+테스트 용이성: PaymentProcessor를 Mocking하여 PaymentService를 테스트할 수 있습니다.  
+  
+🎯 DIP 원칙의 핵심 요약  
+고수준 모듈은 저수준 모듈에 의존해서는 안 됩니다.  
+두 모듈은 추상화된 인터페이스에 의존해야 합니다.  
+DIP를 준수하면 확장성이 높고, 변경에 유연하며, 테스트가 용이한 시스템을 만들 수 있습니다.  
 
