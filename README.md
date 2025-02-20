@@ -26,7 +26,7 @@ SOLID 원칙은 Robert C. Martin에 의해 소개되었으며, 다음과 같은 
 
 이 원칙들을 이해하고 적용함으로써 개발자는 코드의 유연성, 확장성, 유지보수성을 크게 향상시킬 수 있다. 이 원칙들은 서로 긴밀하게 연관되어 있으며, 이를 통해 객체지향 설계의 모범 사례를 구현할 수 있다.
 
-1. 단일 책임 원칙(SRP)
+# 1. 단일 책임 원칙(SRP)
 
 **단일 책임 원칙(Single Responsibility Principle)**은 클래스가 오직 하나의 책임만을 가져야 한다는 원칙이다. 여기서 책임이란 변경의 이유를 의미한다. 클래스가 둘 이상의 책임을 갖게 되면, 코드의 수정이 필요할 때 여러 부분에서 변경이 발생할 수 있어 유지보수가 어려워진다.
 
@@ -38,7 +38,7 @@ SOLID 원칙은 Robert C. Martin에 의해 소개되었으며, 다음과 같은 
 
 SRP는 객체지향 설계의 기본이 되는 원칙으로, 소프트웨어의 복잡성을 관리하는 데 중요한 역할을 한다.
 
-2. 개방-폐쇄 원칙(OCP)
+# 2. 개방-폐쇄 원칙(OCP)
 
 **개방-폐쇄 원칙(Open/Closed Principle)**은 소프트웨어의 구성요소(클래스, 모듈, 함수 등)는 확장에는 열려 있어야 하며, 수정에는 닫혀 있어야 한다는 원칙이다. 즉, 기존의 코드를 변경하지 않으면서 기능을 추가할 수 있어야 한다.
 
@@ -50,7 +50,7 @@ SRP는 객체지향 설계의 기본이 되는 원칙으로, 소프트웨어의 
 
 OCP는 소프트웨어의 유지보수성과 재사용성을 크게 향상시키는 중요한 원칙 중 하나이다.
 
-3. 리스코프 치환 원칙(LSP)
+# 3. 리스코프 치환 원칙(LSP)
 
 **리스코프 치환 원칙(Liskov Substitution Principle)**은 서브타입은 언제나 그것의 베이스 타입으로 교체할 수 있어야 한다는 원칙이다. 즉, 서브클래스는 기반 클래스의 기능을 깨뜨리지 않고 확장할 수 있어야 한다.
 
@@ -62,7 +62,7 @@ LSP를 준수하면, 코드의 재사용성과 유연성이 증가한다.
 
 LSP는 타입 계층구조에서의 상속 관계를 설계할 때 중요한 지침을 제공한다.
 
-4. 인터페이스 분리 원칙(ISP)
+# 4. 인터페이스 분리 원칙(ISP)
 
 **인터페이스 분리 원칙(Interface Segregation Principle)**은 클라이언트는 자신이 사용하지 않는 메서드에 의존하면 안 된다는 원칙이다. 즉, 하나의 큰 인터페이스보다는 구체적인 여러 개의 인터페이스가 낫다는 것이다.
 
@@ -74,12 +74,114 @@ LSP는 타입 계층구조에서의 상속 관계를 설계할 때 중요한 지
 
 ISP는 인터페이스를 설계할 때 클라이언트의 필요를 정확히 반영하여 필요한 것만을 제공하는 것이 중요하다는 점을 강조한다.
 
-결론
+# 5. 의존관계 역전 원칙(DIP)
+🌟 DIP (Dependency Inversion Principle, 의존 역전 원칙)란?
+DIP는 SOLID 원칙 중 하나로, "고수준 모듈은 저수준 모듈에 의존해서는 안 된다. 대신, 둘 다 추상화에 의존해야 한다." 는 원칙입니다.
 
-SOLID 원칙은 객체지향 프로그래밍의 효율적인 설계 방법론을 제공한다. 이 원칙들을 적용함으로써 개발자는 유지보수가 용이하고 확장 가능한 소프트웨어를 개발할 수 있다.
+즉, 고수준의 비즈니스 로직이 저수준의 구현에 의존하지 않고, 추상화된 인터페이스나 클래스에 의존해야 한다는 의미입니다.
+이 원칙을 통해 유연하고 변경에 강한 시스템을 만들 수 있습니다.
 
-이 글을 통해 SOLID 원칙의 중요성과 각 원칙에 대한 이해를 높이고, 실제 개발 과정에 적극적으로 적용해보길 바란다.
+🌱 DIP 원칙의 두 가지 핵심:
+고수준 모듈(비즈니스 로직): 주로 시스템의 중요한 비즈니스 로직을 담당합니다. 예를 들어, PaymentService처럼 결제 처리를 담당하는 클래스가 고수준 모듈이 될 수 있습니다.
+저수준 모듈(구현체): 고수준 모듈의 기능을 실제로 수행하는 클래스입니다. 예를 들어, 결제 방식을 처리하는 CreditCardPaymentProcessor, PayPalPaymentProcessor 클래스가 저수준 모듈입니다.
+추상화: 고수준 모듈과 저수준 모듈이 인터페이스나 추상 클래스를 통해 연결되어야 합니다. 즉, PaymentProcessor와 같은 인터페이스를 정의하여 두 모듈이 서로 의존하지 않도록 합니다.
 
-왜냐하면, 이 원칙들을 숙지하고 적용하는 것만으로도 소프트웨어 개발의 질을 한 단계 끌어올릴 수 있기 때문입니다.
+🚀 DIP 적용 전: 고수준 모듈이 저수준 모듈에 의존하는 경우
+package com.example.dip
 
-이렇게 얻어지는 이점은 단순히 코드의 품질 향상뿐만 아니라, 프로젝트의 전반적인 성공에도 크게 기여할 것이다.
+import org.springframework.stereotype.Service
+
+// 고수준 모듈 (결제 서비스)
+@Service
+class PaymentService {
+    // 저수준 모듈 (결제 처리)
+    private val creditCardPaymentProcessor = CreditCardPaymentProcessor()
+
+    fun processPayment(amount: Double) {
+        creditCardPaymentProcessor.process(amount)
+    }
+}
+
+// 저수준 모듈 (결제 처리)
+class CreditCardPaymentProcessor {
+    fun process(amount: Double) {
+        println("💳 Processing credit card payment of $$amount")
+    }
+}
+❌ 문제점:
+PaymentService는 **직접 CreditCardPaymentProcessor**에 의존하고 있습니다.
+PaymentService가 저수준 모듈에 직접 의존하고 있기 때문에, CreditCardPaymentProcessor를 변경하거나 다른 결제 방식을 추가할 때 PaymentService도 수정해야 합니다.
+DIP 위반! 고수준 모듈이 저수준 모듈에 의존하고 있기 때문에, 시스템의 확장성과 유연성이 떨어집니다.
+
+✅ DIP 적용 후: 추상화(인터페이스) 도입
+DIP를 적용하면, PaymentService가 PaymentProcessor와 같은 추상화된 인터페이스에 의존하게 됩니다. 이제 PaymentService는 구체적인 구현체(CreditCardPaymentProcessor)에 의존하지 않게 됩니다.
+
+📌 1. PaymentProcessor 인터페이스 정의
+package com.example.dip
+
+interface PaymentProcessor {
+    fun process(amount: Double)
+}
+📌 2. CreditCardPaymentProcessor, PayPalPaymentProcessor 구현체 정의
+package com.example.dip
+
+class CreditCardPaymentProcessor : PaymentProcessor {
+    override fun process(amount: Double) {
+        println("💳 Processing credit card payment of $$amount")
+    }
+}
+
+class PayPalPaymentProcessor : PaymentProcessor {
+    override fun process(amount: Double) {
+        println("💰 Processing PayPal payment of $$amount")
+    }
+}
+
+📌 3. PaymentService (DIP 준수: PaymentProcessor 인터페이스에 의존)
+package com.example.dip
+
+import org.springframework.stereotype.Service
+
+@Service
+class PaymentService(private val paymentProcessor: PaymentProcessor) {
+
+    fun processPayment(amount: Double) {
+        paymentProcessor.process(amount)
+    }
+}
+
+PaymentService는 이제 구체적인 PaymentProcessor 구현체에 의존하지 않고, PaymentProcessor 인터페이스에 의존하게 됩니다.
+PaymentService는 인터페이스만 알고 있고, 실제 결제 처리 방식은 다양한 PaymentProcessor 구현체에 의해 처리됩니다.
+
+📌 4. PaymentController (컨트롤러에서 DI를 통해 결제 방식 선택)
+package com.example.dip
+
+import org.springframework.web.bind.annotation.*
+
+@RestController
+@RequestMapping("/payments")
+class PaymentController(private val paymentService: PaymentService) {
+
+    @PostMapping
+    fun processPayment(@RequestParam amount: Double, @RequestParam processorType: String) {
+        when (processorType) {
+            "creditCard" -> paymentService.processPayment(amount)
+            "paypal" -> {
+                val paypalProcessor = PayPalPaymentProcessor()
+                PaymentService(paypalProcessor).processPayment(amount)
+            }
+            else -> throw IllegalArgumentException("Unsupported processor type: $processorType")
+        }
+    }
+}
+
+✅ DIP 적용 후 장점:
+고수준 모듈(PaymentService)이 저수준 모듈(CreditCardPaymentProcessor)에 의존하지 않고, 추상화된 PaymentProcessor 인터페이스에 의존하게 되어, 구현체가 변경되거나 확장되어도 PaymentService는 수정할 필요가 없음.
+새로운 결제 방식(PayPalPaymentProcessor 등)을 추가할 때 PaymentService를 변경하지 않아도 되므로 유지보수와 확장성이 쉬워짐.
+테스트 용이성: PaymentProcessor를 Mocking하여 PaymentService를 테스트할 수 있습니다.
+
+🎯 DIP 원칙의 핵심 요약
+고수준 모듈은 저수준 모듈에 의존해서는 안 됩니다.
+두 모듈은 추상화된 인터페이스에 의존해야 합니다.
+DIP를 준수하면 확장성이 높고, 변경에 유연하며, 테스트가 용이한 시스템을 만들 수 있습니다.
+
