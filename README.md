@@ -1,6 +1,8 @@
-# solid
-해당 공부는 SOLID 원칙을 공부하기 위해서 생성하였습니다.
-참조(https://f-lab.kr/insight/solid-principles-and-object-oriented-design?gad_source=1&gclid=Cj0KCQiAwtu9BhC8ARIsAI9JHalcUXNyORemtSI5G7kwVxPZ9I_xeWMEkZw9vFFIsfeV0CGYPexG1fMaAs6gEALw_wcB)
+# SOLID 원칙
+# 해당 공부는 SOLID 원칙을 공부하기 위해서 생성하였습니다.
+
+## SOLID 원칙에 대해서 아래에 링크에 잘 정리된 내용을 가져왔습니다.
+## [SOLID 원칙과 객체지향 설계](https://f-lab.kr/insight/solid-principles-and-object-oriented-design?gad_source=1&gclid=Cj0KCQiAwtu9BhC8ARIsAI9JHalcUXNyORemtSI5G7kwVxPZ9I_xeWMEkZw9vFFIsfeV0CGYPexG1fMaAs6gEALw_wcB)
 
 객체지향 설계의 핵심: SOLID 원칙
 객체지향 설계의 핵심을 이루는 SOLID 원칙에 관하여 깊이 있게 다루어 보려고 한다.
