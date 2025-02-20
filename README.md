@@ -87,7 +87,7 @@ DIP는 SOLID 원칙 중 하나로, "고수준 모듈은 저수준 모듈에 의�
 추상화: 고수준 모듈과 저수준 모듈이 인터페이스나 추상 클래스를 통해 연결되어야 합니다. 즉, PaymentProcessor와 같은 인터페이스를 정의하여 두 모듈이 서로 의존하지 않도록 합니다.
 
 🚀 DIP 적용 전: 고수준 모듈이 저수준 모듈에 의존하는 경우
-package com.example.dip
+``` package com.example.dip
 
 import org.springframework.stereotype.Service
 
@@ -108,6 +108,7 @@ class CreditCardPaymentProcessor {
         println("💳 Processing credit card payment of $$amount")
     }
 }
+```
 ❌ 문제점:
 PaymentService는 **직접 CreditCardPaymentProcessor**에 의존하고 있습니다.
 PaymentService가 저수준 모듈에 직접 의존하고 있기 때문에, CreditCardPaymentProcessor를 변경하거나 다른 결제 방식을 추가할 때 PaymentService도 수정해야 합니다.
